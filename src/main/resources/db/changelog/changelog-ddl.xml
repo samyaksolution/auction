@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<property name="uuid_type" value="uniqueidentifier" dbms="H2" />
+	<property name="uuid_function" value="NEWID()" dbms="H2" />
+	<changeSet id="0001" author="Ganesh Mali">
+		<createTable tableName="AU_ROLE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_ROLE"
+					nullable="false" />
+			</column>
+			<column name="ROLEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0002" author="Ganesh Mali">
+		<createTable tableName="AU_USER">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_USER"
+					nullable="false" />
+			</column>
+			<column name="USERID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="FIRSTNAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="MIDNAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="LASTNAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="EMAIL" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="PASSWORD" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="PHONE" type="VARCHAR(20)">
+				<constraints nullable="false" />
+			</column>
+			<column name="FAXNO" type="VARCHAR(20)">
+				<constraints nullable="false" />
+			</column>
+			<column name="COMPANYNAME" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="REFERANCE" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="REMARK" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0003" author="Ganesh Mali">
+		<createTable tableName="AU_ADDRESS">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_ADDRESS"
+					nullable="false" />
+			</column>
+			<column name="ADDRESSID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="USERID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+
+			<column name="HOUSENO" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CITY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ZIPCODE" type="VARCHAR(10)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="STATE" type="VARCHAR(20)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CONTRY" type="VARCHAR(25)">
+				<constraints nullable="false" />
+			</column>
+			<column name="TYPE" type="VARCHAR(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0004" author="Ganesh Mali">
+		<createTable tableName="AU_USERROLE_ASSIGN">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true"
+					primaryKeyName="PK_USERROLEASSIGN"
+					nullable="false" />
+			</column>
+			<column name="ROLEASSIGNID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="ADDRESSID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="USERID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0005" author="Ganesh Mali">
+		<createTable tableName="AU_LOTCATEGORY">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_LOTCATEGORY"
+					nullable="false" />
+			</column>
+			<column name="LOTCATEGORYID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0006" author="Ganesh Mali">
+		<createTable tableName="AU_AUCTION">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_AUCTION"
+					nullable="false" />
+			</column>
+			<column name="AUCTIONID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="INVENTORY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="VIEWINGDATETIME" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="STARTDATETIME" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="ENDDATETIME" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="BIDINCREMENTBY" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="RESULTDATETIME" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="BULKBID" type="CHAR(1)" defaultValue="N">
+				<constraints nullable="false" />
+			</column>
+			<column name="PROXYBID" type="CHAR(1)" defaultValue="N">
+				<constraints nullable="false" />
+			</column>
+			<column name="POPCORNBID" type="CHAR(1)" defaultValue="Y">
+				<constraints nullable="false" />
+			</column>
+			<column name="EXTENDDEADLINETYPE" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="EXTENDDEADLINEVALUE" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="AUCTIONMODE" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="NOOFTIMESBIDEXTEND" type="VARCHAR(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="RECORDSTATUS" type="VARCHAR(10)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESCRIPTION" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0007" author="Ganesh Mali">
+		<createTable tableName="AU_AUCTIONDETAILS">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true"
+					primaryKeyName="PK_AUCTIONDETAILS"
+					nullable="false" />
+			</column>
+			<column name="AUCTIONID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="AUCTIONNAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="FROMRANGE" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="TORANGE" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="INCREMENTAMOUNT" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0008" author="Ganesh Mali">
+		<createTable tableName="AU_AUCTIONTAG">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_AUCTIONTAG"
+					nullable="false" />
+			</column>
+			<column name="AUCTIONTAGID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="AUCTIONID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="INCREMENTTAG" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0009" author="Ganesh Mali">
+		<createTable tableName="AU_ITEMSTATUS">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_ITEMSTATUS"
+					nullable="false" />
+			</column>
+			<column name="ITEMSTATUSID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0010" author="Ganesh Mali">
+		<createTable tableName="AU_BIDSTATUS">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_BIDSTATUS"
+					nullable="false" />
+			</column>
+			<column name="BIDSTATUSID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0011" author="Ganesh Mali">
+		<createTable tableName="AU_LOTCATEGOTY">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_LOTCATEGOTY"
+					nullable="false" />
+			</column>
+			<column name="LOTCATEGOTYID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0012" author="Ganesh Mali">
+		<createTable tableName="AU_EXRATE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_EXRATE"
+					nullable="false" />
+			</column>
+			<column name="EXRATEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="CURRENCY" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+
+			<column name="EXRATE" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="ONDATE" type="DATE">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0013" author="Ganesh Mali">
+		<createTable tableName="AU_COLOR">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_COLOR"
+					nullable="false" />
+			</column>
+			<column name="COLORID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0014" author="Ganesh Mali">
+		<createTable tableName="AU_SHAPE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_SHAPE"
+					nullable="false" />
+			</column>
+			<column name="SHAPEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0015" author="Ganesh Mali">
+		<createTable tableName="AU_CUT">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_CUT"
+					nullable="false" />
+			</column>
+			<column name="CUTID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0016" author="Ganesh Mali">
+		<createTable tableName="AU_CLARITY">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_CLARITY"
+					nullable="false" />
+			</column>
+			<column name="CLARITYID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0017" author="Ganesh Mali">
+		<createTable tableName="AU_GEMSTONE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_GEMSTONE"
+					nullable="false" />
+			</column>
+			<column name="GEMSTONEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0018" author="Ganesh Mali">
+		<createTable tableName="AU_JEWELLERYTYPE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_JEWELLERYTYPE"
+					nullable="false" />
+			</column>
+			<column name="JEWELLERYTYPEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0019" author="Ganesh Mali">
+		<createTable tableName="AU_BRAND">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_BRANDE"
+					nullable="false" />
+			</column>
+			<column name="BRANDID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0020" author="Ganesh Mali">
+		<createTable tableName="AU_JEWELLERYMATERIAL">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true"
+					primaryKeyName="PK_JEWELLERYMATERIAL"
+					nullable="false" />
+			</column>
+			<column name="JEWELLERYMATERIALID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESC" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CODE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0021" author="Ganesh Mali">
+		<createTable tableName="AU_STATE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_STATE"
+					nullable="false" />
+			</column>
+			<column name="STATEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0022" author="Ganesh Mali">
+		<createTable tableName="AU_COUNTRY">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_COUNTRY"
+					nullable="false" />
+			</column>
+			<column name="COUNTRYID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="SRNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0023" author="Ganesh Mali">
+		<createTable tableName="AU_CONFIG">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_CONFIG"
+					nullable="false" />
+			</column>
+			<column name="CONFIGID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="NAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DATA" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="NOTE" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0024" author="Ganesh Mali">
+		<createTable tableName="AU_BID">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_BID"
+					nullable="false" />
+			</column>
+			<column name="BIDID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="LOTID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="AUCTIONID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="USERID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="CURRENCYID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="CURRENTBIDAMOUNT" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="BIDDATETIME" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0025" author="Ganesh Mali">
+		<createTable tableName="AU_LOT">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_LOT"
+					nullable="false" />
+			</column>
+			<column name="LOTID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="AUCTIONID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="USERID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="LOTNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESCRIPTION" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="RESERVEPRICE" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="MRP" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="SERIALNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="LOTCATEGORY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="LOTSTATUS" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0026" author="Ganesh Mali">
+		<createTable tableName="AU_LOT_DIAMONDIMAGE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true"
+					primaryKeyName="PK_LOT_DIAMONDIMAGE"
+					nullable="false" />
+			</column>
+			<column name="DIAMONIMAGEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="DIAMONDID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="SHAPE" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="COLOR" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="CLARITY" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="LAB" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="CUT" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="POLISH" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="SYM" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="FLOUR" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="DIAMONDNAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="STATUS" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="FANCYCOLOR" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="WEIGHT" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="CERTNO" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="FLOURCOLOR" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="MEASUREMENT" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="LENGTH" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="WIDTH" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="HEIGHT" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="RAP" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="PPC" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="TPRICE" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="STARTPRICE" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="RESERVEPRICE" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="REMARKS" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ORIGIN" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0027" author="Ganesh Mali">
+		<createTable tableName="AU_LOT_JEWELLERY">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_LOT_JEWELLERY"
+					nullable="false" />
+			</column>
+			<column name="JEWELLERYID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="LOTID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="GEMSTONE" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="MATERIAL" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="LAB" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="DIAMONDNAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="STOCKNUMBER" type="INTEGER">
+				<constraints nullable="false" />
+			</column>
+			<column name="STATUS" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="JEWELLERYTYPE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="BRAND" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="GROSSWEIGHT" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="STARTPRICE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CERTIFICATE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0028" author="Ganesh Mali">
+		<createTable tableName="AU_LOT_JEWELLERYIMAGE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true"
+					primaryKeyName="PK_LOT_JEWELLERYIMAGE"
+					nullable="false" />
+			</column>
+			<column name="JEWELLERYIMAGEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="JEWELLERYID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+
+			<column name="IMAGE" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="VIDEO" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="REMARK" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0029" author="Ganesh Mali">
+		<createTable tableName="AU_LOT_ITEM">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_LOT_ITEM"
+					nullable="false" />
+			</column>
+			<column name="LOTITEMID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="LOTID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+
+			<column name="QUANTITY" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="SKU" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="CONDITION" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+
+			<column name="CERTIFICATENUMBER" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="STARTINGBID" type="DOUBLE">
+				<constraints nullable="false" />
+			</column>
+			<column name="ITEMSTATUS" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="0030" author="Ganesh Mali">
+		<createTable tableName="AU_LOTIMAGE">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_LOTIMAGE"
+					nullable="false" />
+			</column>
+			<column name="lOTIMAGEID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="LOTITEMID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="IMAGE" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="VIDEO" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="REMARK" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="0031" author="Ganesh Mali">
+		<createTable tableName="AU_LOT_EXT">
+			<column name="ID" autoIncrement="true" type="BIGINT">
+				<constraints primaryKey="true" primaryKeyName="PK_LOT_EXT"
+					nullable="false" />
+			</column>
+			<column name="LOTEXTID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="BUYERID" type="UUID">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="OPENINGBIDTIME" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+			<column name="CLOSINGBIDTIME" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+			<column name="EXTENDEDAUCTION" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+
+			<column name="SALEDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+			<column name="PAYMENTDUEDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+			<column name="PAYMENTSSTATUS" type="VARCHAR(20)">
+				<constraints nullable="true" />
+			</column>
+			<column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true" />
+			<column name="CREATEBY" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEBY" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+			<column name="CREATEDDATE" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="UPDATEDDATE" type="DATETIME">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+</databaseChangeLog>
