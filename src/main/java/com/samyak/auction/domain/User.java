@@ -1,7 +1,7 @@
 package com.samyak.auction.domain;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -10,12 +10,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "AU_USER")
-public class User implements Serializable {
-
-
+public class User implements UserDetails {
 	private static final long serialVersionUID = 48336303412201115L;
 
 	@Id
@@ -33,7 +41,7 @@ public class User implements Serializable {
 	@Column(name = "LASTNAME")
 	private String lastname;
 	@Column(name = "USERNAME")
-	private String userName;
+	private String username;
 
 	@Column(name = "EMAIL")
 	private String email;
@@ -62,7 +70,7 @@ public class User implements Serializable {
 	@Column(name = "UPDATEBY")
 	private String updateBy;
 
-	@Column(name = "CREATED")
+	@Column(name = "CREATEDDATE")
 	private Timestamp created;
 
 	@Column(name = "UPDATED")
@@ -108,12 +116,8 @@ public class User implements Serializable {
 		this.lastname = lastname;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
@@ -122,10 +126,6 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
 	}
 
 	public void setPassword(String password) {
@@ -219,6 +219,38 @@ public class User implements Serializable {
 	public void setUpdated(Timestamp updated) {
 		this.updated = updated;
 	}
-	
-	
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

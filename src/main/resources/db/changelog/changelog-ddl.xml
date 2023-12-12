@@ -4,8 +4,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-	<property name="uuid_type" value="uniqueidentifier" dbms="H2" />
-	<property name="uuid_function" value="NEWID()" dbms="H2" />
+	<property name="uuid_type" value="uniqueidentifier" dbms="postgresql" />
+	<property name="uuid_function" value="NEWID()" dbms="postgresql" />
 	<changeSet id="0001" author="Ganesh Mali">
 		<createTable tableName="AU_ROLE">
 			<column name="ID" autoIncrement="true" type="BIGINT">
@@ -21,7 +21,7 @@
 			<column name="DESC" type="VARCHAR(100)">
 				<constraints nullable="true" />
 			</column>
-			<column name="SRNO" type="INTEGER">
+			<column name="SRNO"  autoIncrement="true" type="INTEGER">
 				<constraints nullable="false" />
 			</column>
 			<column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false" />
@@ -41,6 +41,8 @@
 		</createTable>
 	</changeSet>
 
+
+
 	<changeSet id="0002" author="Ganesh Mali">
 		<createTable tableName="AU_USER">
 			<column name="ID" autoIncrement="true" type="BIGINT">
@@ -49,6 +51,9 @@
 			</column>
 			<column name="USERID" type="UUID">
 				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="USERNAME" type="VARCHAR(50)">
+				<constraints nullable="false" />
 			</column>
 			<column name="FIRSTNAME" type="VARCHAR(50)">
 				<constraints nullable="false" />
@@ -63,7 +68,7 @@
 			<column name="EMAIL" type="VARCHAR(50)">
 				<constraints nullable="false" />
 			</column>
-			<column name="PASSWORD" type="VARCHAR(50)">
+			<column name="PASSWORD" type="VARCHAR(200)">
 				<constraints nullable="false" />
 			</column>
 			<column name="PHONE" type="VARCHAR(20)">
@@ -137,9 +142,6 @@
 			<column name="UPDATEBY" type="VARCHAR(50)">
 				<constraints nullable="true" />
 			</column>
-			<column name="CREATEDDATE" type="DATETIME">
-				<constraints nullable="false" />
-			</column>
 			<column name="UPDATEDDATE" type="DATETIME">
 				<constraints nullable="true" />
 			</column>
@@ -156,8 +158,8 @@
 			<column name="ROLEASSIGNID" type="UUID">
 				<constraints nullable="false" unique="true" />
 			</column>
-			<column name="ADDRESSID" type="UUID">
-				<constraints nullable="false" unique="true" />
+			<column name="ROLEID" type="UUID">
+				<constraints nullable="false" />
 			</column>
 			<column name="USERID" type="UUID">
 				<constraints nullable="false" unique="true" />
@@ -1333,5 +1335,33 @@
 				<constraints nullable="true" />
 			</column>
 		</createTable>
+	</changeSet>
+
+	<changeSet id="insertRoleData" author="Sushant Madke">
+		<insert tableName="AU_ROLE">
+			<column name="id" autoIncrement="true"/>
+			<column name="roleid" valueComputed="uuid_generate_v4()"/>
+			<column name="name" value="Auctioneer"/>
+			<column name="srno" autoIncrement="true"/>
+			<column name="close" value="false"/>
+			<column name="active" value="true"/>
+			<column name="createby" value="System"/>
+			<column name="updateby" value="System"/>
+			<column name="createddate" value="2023-12-10T12:30:00"/>
+			<column name="updateddate" value="2023-12-10T12:30:00"/>
+		</insert>
+
+		<insert tableName="AU_ROLE">
+			<column name="id" autoIncrement="true"/>
+			<column name="roleid" valueComputed="uuid_generate_v4()"/>
+			<column name="name" value="Bidder"/>
+			<column name="srno" autoIncrement="true"/>
+			<column name="close" value="false"/>
+			<column name="active" value="true"/>
+			<column name="createby" value="System"/>
+			<column name="updateby" value="System"/>
+			<column name="createddate" value="2023-12-10T12:30:00"/>
+			<column name="updateddate" value="2023-12-10T12:30:00"/>
+		</insert>
 	</changeSet>
 </databaseChangeLog>

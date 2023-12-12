@@ -10,7 +10,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "AU_USERROLE_ASSIGN")
 public class UserRoleAssign implements Serializable {
@@ -40,7 +48,7 @@ public class UserRoleAssign implements Serializable {
 	@Column(name = "UPDATEBY")
 	private String updateBy;
 
-	@Column(name = "CREATED")
+	@Column(name = "CREATEDDATE")
 	private Timestamp created;
 
 	@Column(name = "UPDATED")
