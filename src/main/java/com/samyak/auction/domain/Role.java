@@ -28,9 +28,6 @@ public class Role implements Serializable {
 	@Column(name = "NAME")
 	private String name;
 
-	@Column(name = "DESC")
-	private String desc;
-
 	@Column(name = "CODE")
 	private String code;
 
@@ -77,14 +74,6 @@ public class Role implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDesc() {
-		return desc;
-	}
-
-	public void setDesc(String desc) {
-		this.desc = desc;
 	}
 
 	public String getCode() {

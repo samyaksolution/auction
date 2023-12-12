@@ -28,7 +28,7 @@ public class Clarity implements Serializable {
 	@Column(name = "NAME")
 	private String name;
 
-	@Column(name = "DESC")
+	@Column(name = "DESCRIPTION")
 	private String desc;
 
 	@Column(name = "CODE")
