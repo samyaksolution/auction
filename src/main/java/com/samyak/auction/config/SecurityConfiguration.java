@@ -1,49 +1,64 @@
 package com.samyak.auction.config;
 
-import lombok.RequiredArgsConstructor;
+import com.samyak.auction.controller.CustomLogoutHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfiguration {
 
-    private final JwtAuthenticationFilter jwtAuthFilter;
-    private final AuthenticationProvider authenticationProvider;
-    private final LogoutHandler logoutHandler;
+    @Autowired
+    private CustomLogoutHandler customLogoutHandler;
+    @Autowired
+    private AuthenticationProvider authenticationProvider;
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthFilter;
+    @Autowired
+    private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**")
-                .permitAll()
-
-                .anyRequest()
-                .authenticated()
-                .and()
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((authorizeHttpRequests) -> {
+                    authorizeHttpRequests
+                            .requestMatchers("/api/v1/auth/**")
+                            .permitAll();
+                })
+                .authorizeHttpRequests((authorizeHttpRequests) -> {
+                    authorizeHttpRequests
+                            .anyRequest()
+                            .authenticated();
+                })
+                .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> {
+                    httpSecurityExceptionHandlingConfigurer
+                            .authenticationEntryPoint(jwtAuthenticationEntryPoint);
+                })
                 .logout(logout ->
                         logout.logoutUrl("/api/v1/auth/logout")
-                                .addLogoutHandler(logoutHandler)
+                                .addLogoutHandler(customLogoutHandler)
+                                .invalidateHttpSession(true)
                                 .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()))
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .sessionManagement((sessionManagement) ->
+                        sessionManagement
+                                .sessionConcurrency((sessionConcurrency) ->
+                                        sessionConcurrency
+                                                .maximumSessions(1)
+                                                .expiredUrl("/login?expired")))
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-        ;
+
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 }

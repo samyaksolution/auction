@@ -1,15 +1,14 @@
 package com.samyak.auction.controller;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class AuthenticationResponse {
 
-    private String token;
+    private final String message;
+
+    public AuthenticationResponse(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

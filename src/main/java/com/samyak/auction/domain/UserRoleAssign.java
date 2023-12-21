@@ -1,132 +1,116 @@
 package com.samyak.auction.domain;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "AU_USERROLE_ASSIGN")
 public class UserRoleAssign implements Serializable {
+    private static final long serialVersionUID = -5459736067774869857L;
 
-	private static final long serialVersionUID = -5459736067774869857L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Long id;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID")
-	private Long id;
+    @Column(name = "ROLEASSIGNID")
+    private UUID roleAssignId;
 
-	@Column(name = "ROLEASSIGNID")
-	private UUID roleAssignId;
-	
-	@Column(name = "USERID")
-	private UUID userId;
-	
-	@Column(name = "ROLEID")
-	private UUID roleId;
-	
-	@Column(name = "ACTIVE")
-	private Boolean active;
+    @Column(name = "USERID")
+    private UUID userId;
 
-	@Column(name = "CREATEBY")
-	private String createBy;
+    @Column(name = "ROLEID")
+    private UUID roleId;
 
-	@Column(name = "UPDATEBY")
-	private String updateBy;
+    @Column(name = "ACTIVE")
+    private Boolean active;
 
-	@Column(name = "CREATEDDATE")
-	private Timestamp created;
+    @Column(name = "CREATEBY")
+    private String createBy;
 
-	@Column(name = "UPDATED")
-	private Timestamp updated;
+    @Column(name = "UPDATEBY")
+    private String updateBy;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(name = "CREATEDDATE")
+    private Timestamp created;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "UPDATED")
+    private Timestamp updated;
 
-	public UUID getRoleAssignId() {
-		return roleAssignId;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setRoleAssignId(UUID roleAssignId) {
-		this.roleAssignId = roleAssignId;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public UUID getUserId() {
-		return userId;
-	}
+    public UUID getRoleAssignId() {
+        return roleAssignId;
+    }
 
-	public void setUserId(UUID userId) {
-		this.userId = userId;
-	}
+    public void setRoleAssignId(UUID roleAssignId) {
+        this.roleAssignId = roleAssignId;
+    }
 
-	public UUID getRoleId() {
-		return roleId;
-	}
+    public UUID getUserId() {
+        return userId;
+    }
 
-	public void setRoleId(UUID roleId) {
-		this.roleId = roleId;
-	}
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
 
-	public Boolean getActive() {
-		return active;
-	}
+    public UUID getRoleId() {
+        return roleId;
+    }
 
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
+    public void setRoleId(UUID roleId) {
+        this.roleId = roleId;
+    }
 
-	public String getCreateBy() {
-		return createBy;
-	}
+    public Boolean getActive() {
+        return active;
+    }
 
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
-	public String getUpdateBy() {
-		return updateBy;
-	}
+    public String getCreateBy() {
+        return createBy;
+    }
 
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
 
-	public Timestamp getCreated() {
-		return created;
-	}
+    public String getUpdateBy() {
+        return updateBy;
+    }
 
-	public void setCreated(Timestamp created) {
-		this.created = created;
-	}
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
+    }
 
-	public Timestamp getUpdated() {
-		return updated;
-	}
+    public Timestamp getCreated() {
+        return created;
+    }
 
-	public void setUpdated(Timestamp updated) {
-		this.updated = updated;
-	}
-	
-	
+    public void setCreated(Timestamp created) {
+        this.created = created;
+    }
 
-	
+    public Timestamp getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Timestamp updated) {
+        this.updated = updated;
+    }
+
 }

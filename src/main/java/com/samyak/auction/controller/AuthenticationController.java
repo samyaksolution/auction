@@ -1,36 +1,35 @@
 package com.samyak.auction.controller;
 
+import com.samyak.auction.dto.AuthenticationRequest;
+import com.samyak.auction.dto.UserInfo;
 import com.samyak.auction.exceptions.UserAlreadyExistsException;
-import com.samyak.auction.model.api.request.auth.AuthenticationRequest;
-import com.samyak.auction.model.api.request.auth.RegisterRequest;
 import com.samyak.auction.service.AuthenticationService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/auth")
-@RequiredArgsConstructor
+@RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthenticationController {
 
-    private final AuthenticationService service;
+    @Autowired
+    private AuthenticationService service;
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest request){
+    @PostMapping("/auth/register")
+    public ResponseEntity<?> register(@RequestBody UserInfo request) {
         try {
-            return ResponseEntity.ok(service.register(request));
-        }catch (UserAlreadyExistsException ex){
+            AuthenticationResponse response = service.register(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response.getMessage());
+        } catch (UserAlreadyExistsException ex) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
 
         }
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/auth/authenticate")
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequest request) {
 
         try {
