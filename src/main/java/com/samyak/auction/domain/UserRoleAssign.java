@@ -6,14 +6,13 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-
 @Entity
 @Table(name = "AU_USERROLE_ASSIGN")
 public class UserRoleAssign implements Serializable {
     private static final long serialVersionUID = -5459736067774869857L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
@@ -38,7 +37,7 @@ public class UserRoleAssign implements Serializable {
     @Column(name = "CREATEDDATE")
     private Timestamp created;
 
-    @Column(name = "UPDATED")
+    @Column(name = "UPDATEDAT")
     private Timestamp updated;
 
     public Long getId() {

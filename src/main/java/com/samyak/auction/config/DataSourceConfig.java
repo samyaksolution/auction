@@ -115,7 +115,6 @@ public class DataSourceConfig implements Serializable {
         hikariProperties.put("dataSourceProperties", dbProperties);
         hikariProperties.put("maxLifetime", this.maxLifetime);
 
-
         HikariConfig hikariConfig = new HikariConfig(hikariProperties);
         return new HikariDataSource(hikariConfig);
 

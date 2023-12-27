@@ -8,17 +8,16 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.UUID;
 
-
 @Entity
 @Table(name = "AU_USER")
 public class User implements UserDetails {
     private static final long serialVersionUID = 48336303412201115L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-	
+
     @Column(name = "USERID")
     private UUID userId;
 
@@ -46,7 +45,7 @@ public class User implements UserDetails {
     @Column(name = "REMARK")
     private String remark;
 
-    @Column(name = "CLOSE")
+    @Column(name = "CLOSED")
     private Boolean close;
 
     @Column(name = "ACTIVE")
@@ -61,7 +60,7 @@ public class User implements UserDetails {
     @Column(name = "CREATEDDATE")
     private Timestamp created;
 
-    @Column(name = "UPDATED")
+    @Column(name = "UPDATEDDATE")
     private Timestamp updated;
 
     public Long getId() {
@@ -104,20 +103,12 @@ public class User implements UserDetails {
         this.lastname = lastname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhone() {
@@ -217,9 +208,17 @@ public class User implements UserDetails {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override

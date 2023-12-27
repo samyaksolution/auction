@@ -4,7 +4,7 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <property name="uuid_type" value="uniqueidentifier" dbms="postgresql"/>
+    <property name="uuid_type" value="uniqueidentifier" dbms="mssql"/>
     <property name="uuid_function" value="NEWID()" dbms="postgresql"/>
     <changeSet id="0001" author="Ganesh Mali">
         <createTable tableName="AU_ROLE">
@@ -18,13 +18,13 @@
             <column name="NAME" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="DESC" type="VARCHAR(100)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="SRNO" autoIncrement="true" type="INTEGER">
+            <column name="CODE" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="DESCRIPTION" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="CLOSED" type="BOOLEAN" defaultValueBoolean="false"/>
             <column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true"/>
             <column name="CREATEBY" type="VARCHAR(50)">
                 <constraints nullable="false"/>
@@ -32,10 +32,10 @@
             <column name="UPDATEBY" type="VARCHAR(50)">
                 <constraints nullable="true"/>
             </column>
-            <column name="CREATEDDATE" type="DATETIME">
+            <column name="CREATEDAT" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATEDDATE" type="DATETIME">
+            <column name="UPDATEDAT" type="DATETIME">
                 <constraints nullable="true"/>
             </column>
         </createTable>
@@ -85,7 +85,7 @@
             <column name="REMARK" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="CLOSED" type="BOOLEAN" defaultValueBoolean="false"/>
             <column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true"/>
             <column name="CREATEBY" type="VARCHAR(50)">
                 <constraints nullable="false"/>
@@ -128,7 +128,7 @@
             <column name="STATE" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
-            <column name="CONTRY" type="VARCHAR(25)">
+            <column name="COUNTRY" type="VARCHAR(25)">
                 <constraints nullable="false"/>
             </column>
             <column name="TYPE" type="VARCHAR(10)">
@@ -142,6 +142,9 @@
                 <constraints nullable="true"/>
             </column>
             <column name="UPDATEDDATE" type="DATETIME">
+                <constraints nullable="true"/>
+            </column>
+            <column name="CREATEDAT" type="DATETIME">
                 <constraints nullable="true"/>
             </column>
         </createTable>
@@ -173,7 +176,7 @@
             <column name="CREATEDDATE" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATEDDATE" type="DATETIME">
+            <column name="UPDATEDAT" type="DATETIME">
                 <constraints nullable="true"/>
             </column>
         </createTable>
@@ -199,7 +202,7 @@
             <column name="SRNO" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="CLOSE" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="CLOSED" type="BOOLEAN" defaultValueBoolean="false"/>
             <column name="ACTIVE" type="BOOLEAN" defaultValueBoolean="true"/>
             <column name="CREATEBY" type="VARCHAR(50)">
                 <constraints nullable="false"/>
@@ -1339,28 +1342,32 @@
     <changeSet id="insertRoleData" author="Sushant Madke">
         <insert tableName="AU_ROLE">
             <column name="id" autoIncrement="true"/>
-            <column name="roleid" valueComputed="uuid_generate_v4()"/>
+            <column name="roleid" valueComputed="NEWID()"/>
             <column name="name" value="Auctioneer"/>
+            <column name="code" value="AUC"/>
             <column name="srno" autoIncrement="true"/>
-            <column name="close" value="false"/>
+            <column name="closed" value="false"/>
             <column name="active" value="true"/>
             <column name="createby" value="System"/>
             <column name="updateby" value="System"/>
-            <column name="createddate" value="2023-12-10T12:30:00"/>
-            <column name="updateddate" value="2023-12-10T12:30:00"/>
+            <column name="CREATEDAT" valueComputed="GETDATE()"/>
+            <column name="updatedat" valueComputed="GETDATE()"/>
         </insert>
 
         <insert tableName="AU_ROLE">
             <column name="id" autoIncrement="true"/>
-            <column name="roleid" valueComputed="uuid_generate_v4()"/>
+            <column name="roleid" valueComputed="NEWID()"/>
             <column name="name" value="Bidder"/>
+            <column name="code" value="BID"/>
             <column name="srno" autoIncrement="true"/>
-            <column name="close" value="false"/>
+            <column name="closed" value="false"/>
             <column name="active" value="true"/>
             <column name="createby" value="System"/>
             <column name="updateby" value="System"/>
-            <column name="createddate" value="2023-12-10T12:30:00"/>
-            <column name="updateddate" value="2023-12-10T12:30:00"/>
+            <column name="CREATEDAT" valueComputed="GETDATE()"/>
+            <column name="updatedat" valueComputed="GETDATE()"/>
         </insert>
     </changeSet>
+
+
 </databaseChangeLog>

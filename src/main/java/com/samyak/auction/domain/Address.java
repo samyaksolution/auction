@@ -14,7 +14,7 @@ public class Address implements Serializable {
     private static final long serialVersionUID = 562356374532648196L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
 
@@ -36,7 +36,7 @@ public class Address implements Serializable {
     @Column(name = "STATE")
     private String state;
 
-    @Column(name = "CONTRY")
+    @Column(name = "COUNTRY")
     private String contry;
 
     @Column(name = "TYPE")
@@ -50,10 +50,10 @@ public class Address implements Serializable {
     @Column(name = "UPDATEBY")
     private String updateBy;
 
-    @Column(name = "CREATED")
+    @Column(name = "CREATEDAT")
     private Timestamp created;
 
-    @Column(name = "UPDATED")
+    @Column(name = "UPDATEDDATE")
     private Timestamp updated;
 
     public Integer getId() {
